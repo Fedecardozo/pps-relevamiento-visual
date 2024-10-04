@@ -1,0 +1,42 @@
+.padre {
+  background-color: #83a5ab;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  color: #f7fff7;
+}
+@-webkit-keyframes scale-up-hor-center {
+  0% {
+    -webkit-transform: scaleX(0.4);
+    transform: scaleX(0.4);
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
+@keyframes scale-up-hor-center {
+  0% {
+    -webkit-transform: scaleX(0.4);
+    transform: scaleX(0.4);
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
+
+.container {
+  -webkit-animation: scale-up-hor-center 1s cubic-bezier(0.39, 0.575, 0.565, 1)
+    both;
+  animation: scale-up-hor-center 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  text-align: center;
+  img {
+    width: 80%;
+  }
+}
+
+h2 {
+  font-weight: 900;
+  font-size: 2rem;
+}

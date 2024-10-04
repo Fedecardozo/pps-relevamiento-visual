@@ -1,0 +1,72 @@
+<div class="centered-div">
+  <div class="formbold-form-wrapper">
+    <form>
+      <div class="justify-center">
+        <img src="assets/splash.png" alt="icono" class="img-icon" />
+      </div>
+      <div class="formbold-form-title">
+        <h2 class="">Login</h2>
+        <p>Bienvenido de vuelta a la app</p>
+      </div>
+      <div class="formbold-mb-3">
+        <label for="address" class="formbold-form-label"> Email</label>
+        <input
+          type="email"
+          name="email"
+          class="formbold-form-input"
+          [(ngModel)]="correo"
+        />
+      </div>
+
+      <div class="formbold-mb-3">
+        <label for="address" class="formbold-form-label"> Clave</label>
+        <input
+          type="password"
+          name="clave"
+          class="formbold-form-input"
+          [(ngModel)]="password"
+        />
+      </div>
+      <div class="justify-between formbold-mb-3">
+        <ion-button
+          size="small"
+          shape="round"
+          color="danger"
+          (click)="cargaUsuario(usuarios[0])"
+          >User 1</ion-button
+        >
+        <ion-button
+          size="small"
+          shape="round"
+          color="danger"
+          (click)="cargaUsuario(usuarios[1])"
+          >User 2</ion-button
+        >
+        <ion-button
+          size="small"
+          shape="round"
+          color="danger"
+          (click)="cargaUsuario(usuarios[2])"
+          >User 3</ion-button
+        >
+      </div>
+      <p class="p-clave mb-4">¿Olvidate tu contraseña?</p>
+      <ion-button
+        shape="round"
+        color="danger"
+        expand="full"
+        class="mb-4"
+        (click)="validarSesion()"
+        >Iniciar Sesión</ion-button
+      >
+    </form>
+    <ion-button
+      shape="round"
+      fill="outline"
+      color="danger"
+      expand="full"
+      routerLink="/registro"
+      >Crear Cuenta</ion-button
+    >
+  </div>
+</div>
