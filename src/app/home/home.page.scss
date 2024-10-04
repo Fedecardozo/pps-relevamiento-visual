@@ -1,5 +1,5 @@
 ion-content {
-  --ion-background-color: #f7f7f7;
+  --ion-background-color: #f7fff7;
 }
 .container-menu {
   min-height: 90vh;
@@ -11,6 +11,7 @@ ion-content {
 .div-child {
   padding: 20px;
   text-align: center;
+  color: #1a535c;
 }
 .div-img {
   padding: 30% 20px 0 20px;
@@ -25,5 +26,4 @@ ion-content {
 }
 .div-child p {
   font-size: 14px;
-  color: #536387;
 }
