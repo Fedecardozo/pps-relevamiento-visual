@@ -27,36 +27,19 @@
         />
       </div>
       <div class="justify-between formbold-mb-3">
-        <ion-button
-          size="small"
-          shape="round"
-          color="danger"
-          (click)="cargaUsuario(usuarios[0])"
-          >Fede</ion-button
-        >
-        <ion-button
-          size="small"
-          shape="round"
-          color="danger"
-          (click)="cargaUsuario(usuarios[1])"
-          >Luna</ion-button
-        >
-        <ion-button
-          size="small"
-          shape="round"
-          color="danger"
-          (click)="cargaUsuario(usuarios[2])"
-          >Clari</ion-button
-        >
+        <button class="btn-violet" (click)="cargaUsuario(usuarios[0])">
+          Fede
+        </button>
+        <button class="btn-violet" (click)="cargaUsuario(usuarios[1])">
+          Luna
+        </button>
+        <button class="btn-violet" (click)="cargaUsuario(usuarios[2])">
+          Clari
+        </button>
       </div>
-      <ion-button
-        shape="round"
-        color="danger"
-        expand="full"
-        class="mb-4"
-        (click)="validarSesion()"
-        >Iniciar Sesión</ion-button
-      >
+      <button class="btn" (click)="validarSesion()">
+        <span>Iniciar Sesión</span>
+      </button>
     </form>
   </div>
 </div>
