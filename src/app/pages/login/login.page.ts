@@ -51,7 +51,7 @@ export class LoginPage implements OnInit {
       .login(this.correo, this.password)
       .then((response) => {
         console.log(response);
-        this.router.navigateByUrl('/main');
+        this.router.navigateByUrl('/home');
       })
       .catch((error) => console.log(error));
   }

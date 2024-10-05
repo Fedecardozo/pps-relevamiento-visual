@@ -5,11 +5,10 @@
         <img src="assets/logo.png" alt="icono" class="img-icon" />
       </div>
       <div class="formbold-form-title">
-        <h2 class="">Login</h2>
-        <p>Bienvenido de vuelta a la app</p>
+        <h2 class="">Iniciar sesión</h2>
       </div>
       <div class="formbold-mb-3">
-        <label for="address" class="formbold-form-label"> Email</label>
+        <label for="address" class="formbold-form-label"> Correo</label>
         <input
           type="email"
           name="email"
@@ -19,7 +18,7 @@
       </div>
 
       <div class="formbold-mb-3">
-        <label for="address" class="formbold-form-label"> Clave</label>
+        <label for="address" class="formbold-form-label"> Contraseña</label>
         <input
           type="password"
           name="clave"
@@ -33,24 +32,23 @@
           shape="round"
           color="danger"
           (click)="cargaUsuario(usuarios[0])"
-          >User 1</ion-button
+          >Fede</ion-button
         >
         <ion-button
           size="small"
           shape="round"
           color="danger"
           (click)="cargaUsuario(usuarios[1])"
-          >User 2</ion-button
+          >Luna</ion-button
         >
         <ion-button
           size="small"
           shape="round"
           color="danger"
           (click)="cargaUsuario(usuarios[2])"
-          >User 3</ion-button
+          >Clari</ion-button
         >
       </div>
-      <p class="p-clave mb-4">¿Olvidate tu contraseña?</p>
       <ion-button
         shape="round"
         color="danger"
@@ -60,13 +58,5 @@
         >Iniciar Sesión</ion-button
       >
     </form>
-    <ion-button
-      shape="round"
-      fill="outline"
-      color="danger"
-      expand="full"
-      routerLink="/registro"
-      >Crear Cuenta</ion-button
-    >
   </div>
 </div>
