@@ -22,6 +22,6 @@ export class SplashPage {
   constructor() {
     setTimeout(() => {
       this.router.navigateByUrl('/login');
-    }, 2500);
+    }, 5200);
   }
 }
