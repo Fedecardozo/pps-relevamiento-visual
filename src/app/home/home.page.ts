@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import {
   IonHeader,
   IonToolbar,
@@ -8,6 +8,7 @@ import {
   IonTabButton,
   IonButton,
 } from '@ionic/angular/standalone';
+import { UsersService } from '../services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -26,4 +27,11 @@ import {
 })
 export class HomePage {
   constructor() {}
+  auth: UsersService = inject(UsersService);
+  router: Router = inject(Router);
+
+  cerrarSesion() {
+    this.auth.cerrarSesion();
+    this.router.navigateByUrl('/login');
+  }
 }

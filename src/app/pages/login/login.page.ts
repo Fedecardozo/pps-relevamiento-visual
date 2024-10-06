@@ -11,8 +11,8 @@ import {
   IonInput,
   IonAlert,
 } from '@ionic/angular/standalone';
-import { UserService } from 'src/app/services/user.service';
 import { Router, RouterLink } from '@angular/router';
+import { UsersService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -34,9 +34,10 @@ import { Router, RouterLink } from '@angular/router';
   ],
 })
 export class LoginPage implements OnInit {
-  constructor(private userService: UserService) {}
+  private userService: UsersService = inject(UsersService);
 
-  ngOnInit() {}
+  constructor() {}
+
   usuarios: Object[] = [
     { correo: 'fede@gmail.com', password: '123456' },
     { correo: 'luna@gmail.com', password: '123456' },
@@ -46,14 +47,26 @@ export class LoginPage implements OnInit {
   password: string = '';
   text: string = '';
   private router = inject(Router);
-  validarSesion() {
+
+  ngOnInit(): void {
+    if (this.userService.correo !== null) {
+      this.router.navigateByUrl('/home');
+    }
+  }
+
+  acceder() {
     this.userService
       .login(this.correo, this.password)
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         this.router.navigateByUrl('/home');
       })
-      .catch((error) => console.log(error));
+      .catch(() => {
+        //Muestro un alert de que no esta registrado
+        console.log(
+          'No se encuentra registrado',
+          'Verifique correo y contraseña ingresadas'
+        );
+      });
   }
 
   cargaUsuario(user: any) {
