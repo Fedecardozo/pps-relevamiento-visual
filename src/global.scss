@@ -222,11 +222,23 @@ body {
 }
 @-webkit-keyframes glow {
   40% {
-    text-shadow: 0 0 8px #fff;
+    text-shadow: 0 0 8px #ffffff;
   }
 }
 @keyframes glow {
   40% {
     text-shadow: 0 0 8px #fff;
   }
+}
+
+// Estilos alerts
+.btn-ok {
+  padding: 10px 22px;
+  border-radius: 6px;
+  border: none;
+  background-color: #8e50ff;
+}
+
+.alert-title {
+  color: #c5b0ff;
 }
