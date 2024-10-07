@@ -27,11 +27,5 @@ import { UsersService } from '../services/user.service';
 })
 export class HomePage {
   constructor() {}
-  auth: UsersService = inject(UsersService);
   router: Router = inject(Router);
-
-  cerrarSesion() {
-    this.auth.cerrarSesion();
-    this.router.navigateByUrl('/login');
-  }
 }

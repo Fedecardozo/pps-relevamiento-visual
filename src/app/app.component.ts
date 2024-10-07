@@ -12,21 +12,21 @@ import { UsersService } from './services/user.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
+  styleUrls: ['./app.component.scss'],
   standalone: true,
   imports: [IonButton, IonIcon, IonApp, IonRouterOutlet],
 })
 export class AppComponent {
   public router: Router = inject(Router);
-  private auth: UsersService = inject(UsersService);
+  public auth: UsersService = inject(UsersService);
   constructor() {
     this.router.navigateByUrl('splash');
   }
   ionViewDitEnter() {
     SplashScreen.hide();
   }
-  cerrarSesion() {
-    console.log('entro');
-    this.auth.cerrarSesion();
+  async cerrarSesion() {
+    await this.auth.cerrarSesion();
     this.router.navigateByUrl('/login');
   }
 }

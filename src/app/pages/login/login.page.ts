@@ -67,7 +67,6 @@ export class LoginPage implements OnInit {
 
   acceder() {
     if (this.fg.valid) {
-      console.log('entro: ' + this.fg.valid);
       this.userService
         .login(
           this.fg.controls['correo'].value,
