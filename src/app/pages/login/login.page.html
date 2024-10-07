@@ -1,32 +1,49 @@
 <div class="centered-div">
   <div class="formbold-form-wrapper">
-    <form>
+    <form [formGroup]="fg">
       <div class="justify-center">
         <img src="assets/logo.png" alt="icono" class="img-icon" />
       </div>
       <div class="formbold-form-title text-luz">
         <h2>Iniciar sesión</h2>
       </div>
-      <div class="formbold-mb-3">
+      <div>
         <label for="address" class="formbold-form-label"> Correo</label>
         <input
           type="email"
           name="email"
           class="formbold-form-input"
-          [(ngModel)]="correo"
+          formControlName="correo"
         />
       </div>
+      <div class="cont-p">
+        @if(this.fg.controls['correo'].errors !== null &&
+        this.fg.controls["correo"].touched) { @if
+        (this.fg.controls['correo'].errors!['required']) {
+        <p>El campo esta vacio</p>
+        } @else if (this.fg.controls['correo'].errors!['email']) {
+        <p>No es un correo valido</p>
+        } }
+      </div>
 
-      <div class="formbold-mb-3">
+      <div>
         <label for="address" class="formbold-form-label"> Contraseña</label>
         <input
           type="password"
           name="clave"
           class="formbold-form-input"
-          [(ngModel)]="password"
+          formControlName="clave"
         />
       </div>
-      <div class="justify-between formbold-mb-3">
+      <div class="cont-p">
+        @if(this.fg.controls['clave'].errors !== null &&
+        this.fg.controls["clave"].touched) { @if
+        (this.fg.controls['clave'].errors!['required']) {
+        <p>El campo esta vacio</p>
+        } }
+      </div>
+
+      <div class="justify-between mb-2">
         <button class="btn-violet" (click)="cargaUsuario(usuarios[0])">
           Fede
         </button>
@@ -37,7 +54,7 @@
           Clari
         </button>
       </div>
-      <button class="btn" (click)="acceder()">
+      <button class="btn" type="submit" (click)="acceder()">
         <span>Iniciar Sesión</span>
       </button>
     </form>

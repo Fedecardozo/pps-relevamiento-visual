@@ -18,6 +18,7 @@ export class UsersService {
   constructor() {
     this.unSuscribe = this.auth.onAuthStateChanged((auth) => {
       if (auth?.email) {
+        console.log(auth.email);
         this.correo = this.auth.currentUser?.email;
       } else {
         this.correo = null;

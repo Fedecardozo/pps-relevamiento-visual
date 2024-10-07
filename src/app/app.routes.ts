@@ -26,3 +26,6 @@ export const routes: Routes = [
     canDeactivate: [authDeactivateGuard],
   },
 ];
+
+// TEngo que hacer que valide el ingreso en login
+// y tambien tengo que permitir para cerrar sesion

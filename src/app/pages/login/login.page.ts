@@ -1,6 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import {
   IonContent,
   IonHeader,
@@ -13,6 +19,7 @@ import {
 } from '@ionic/angular/standalone';
 import { Router, RouterLink } from '@angular/router';
 import { UsersService } from 'src/app/services/user.service';
+import { Alert } from 'src/app/modals/alert';
 
 @Component({
   selector: 'app-login',
@@ -31,22 +38,26 @@ import { UsersService } from 'src/app/services/user.service';
     CommonModule,
     FormsModule,
     RouterLink,
+    ReactiveFormsModule,
   ],
 })
 export class LoginPage implements OnInit {
   private userService: UsersService = inject(UsersService);
-
-  constructor() {}
-
+  private router = inject(Router);
+  public fb: FormBuilder = inject(FormBuilder);
+  public fg: FormGroup;
   usuarios: Object[] = [
     { correo: 'fede@gmail.com', password: '123456' },
     { correo: 'luna@gmail.com', password: '123456' },
     { correo: 'clari@gmail.com', password: '123456' },
   ];
-  correo: string = '';
-  password: string = '';
-  text: string = '';
-  private router = inject(Router);
+
+  constructor() {
+    this.fg = this.fb.group({
+      correo: ['', [Validators.required, Validators.email]],
+      clave: ['', [Validators.required]],
+    });
+  }
 
   ngOnInit(): void {
     if (this.userService.correo !== null) {
@@ -55,22 +66,33 @@ export class LoginPage implements OnInit {
   }
 
   acceder() {
-    this.userService
-      .login(this.correo, this.password)
-      .then(() => {
-        this.router.navigateByUrl('/home');
-      })
-      .catch(() => {
-        //Muestro un alert de que no esta registrado
-        console.log(
-          'No se encuentra registrado',
-          'Verifique correo y contraseña ingresadas'
-        );
-      });
+    if (this.fg.valid) {
+      console.log('entro: ' + this.fg.valid);
+      this.userService
+        .login(
+          this.fg.controls['correo'].value,
+          this.fg.controls['clave'].value
+        )
+        .then(() => {
+          this.router.navigateByUrl('/home');
+        })
+        .catch(() => {
+          //Muestro un alert de que no esta registrado
+          Alert.error(
+            'No se encuentra registrado',
+            'Verifique correo y contraseña ingresadas'
+          );
+        })
+        .finally(() => {
+          this.fg.reset();
+        });
+    }
   }
 
   cargaUsuario(user: any) {
-    this.correo = user.correo;
-    this.password = user.password;
+    this.fg.setValue({
+      correo: user.correo,
+      clave: user.password,
+    });
   }
 }
