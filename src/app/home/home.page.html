@@ -1,3 +1,11 @@
+<header>
+  @if(this.auth.correo && this.auth.splash) {
+  <ion-button color="danger" (click)="cerrarSesion()">
+    Cerrar sesión
+  </ion-button>
+  }
+</header>
+
 <div class="container-menu">
   <div class="div-child div-img">
     <img src="/assets/logo.png" alt="Bienvendio" class="img-welcome" />
@@ -12,11 +20,11 @@
     </p>
   </div>
   <div class="div-child">
-    <button class="btn mb-3" (click)="this.subirCosasLindas()">
+    <button class="btn mb-3" routerLink="/cosas-lindas">
       <span> Cosas Lindas </span>
     </button>
 
-    <button class="btn mb-3" (click)="this.subirCosasFeas()">
+    <button class="btn mb-3" routerLink="/cosas-feas">
       <span> Cosas Feas </span>
     </button>
   </div>

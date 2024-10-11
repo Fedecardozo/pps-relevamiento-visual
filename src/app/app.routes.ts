@@ -24,7 +24,15 @@ export const routes: Routes = [
       import('./pages/login/login.page').then((m) => m.LoginPage),
     canActivate: [authGuard],
     canDeactivate: [authDeactivateGuard],
+  },  {
+    path: 'cosas-lindas',
+    loadComponent: () => import('./pages/cosas-lindas/cosas-lindas.page').then( m => m.CosasLindasPage)
   },
+  {
+    path: 'cosas-feas',
+    loadComponent: () => import('./pages/cosas-feas/cosas-feas.page').then( m => m.CosasFeasPage)
+  },
+
 ];
 
 // TEngo que hacer que valide el ingreso en login

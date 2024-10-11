@@ -1,0 +1,48 @@
+footer > div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  background-color: rgb(5, 6, 45);
+}
+
+button {
+  padding: 10px 22px;
+  border-radius: 6px;
+  border: none;
+  background-color: #7d2ae8;
+  height: 100%;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+img {
+  height: 350px;
+  width: 90%;
+}
+
+ion-card-content {
+  padding: 0;
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+}
+
+.div-btns {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+}
