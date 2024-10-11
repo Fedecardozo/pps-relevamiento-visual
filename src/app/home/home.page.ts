@@ -9,6 +9,7 @@ import {
   IonButton,
 } from '@ionic/angular/standalone';
 import { UsersService } from '../services/user.service';
+import { UtilsService } from '../services/utils.service';
 
 @Component({
   selector: 'app-home',
@@ -28,4 +29,18 @@ import { UsersService } from '../services/user.service';
 export class HomePage {
   constructor() {}
   router: Router = inject(Router);
+  utils: UtilsService = inject(UtilsService);
+  img: string | undefined = '';
+
+  subirCosasLindas() {
+    this.takeImage('Subir una foto para cosas lindas');
+  }
+
+  subirCosasFeas() {
+    this.takeImage('Subir una foto para cosas Feas');
+  }
+  //Tomar o seleccionar una imagen
+  async takeImage(title: string) {
+    this.img = (await this.utils.takePicture(title)).dataUrl;
+  }
 }

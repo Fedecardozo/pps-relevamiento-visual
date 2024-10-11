@@ -1,6 +1,9 @@
 <div class="container-menu">
   <div class="div-child div-img">
     <img src="/assets/logo.png" alt="Bienvendio" class="img-welcome" />
+    @if(this.img !== undefined) {
+    <img [src]="this.img" alt="" />
+    }
   </div>
   <div class="div-child">
     <div class="text-luz">
@@ -12,11 +15,11 @@
     </p>
   </div>
   <div class="div-child">
-    <button class="btn mb-3">
+    <button class="btn mb-3" (click)="this.subirCosasLindas()">
       <span> Cosas Lindas </span>
     </button>
 
-    <button class="btn mb-3">
+    <button class="btn mb-3" (click)="this.subirCosasFeas()">
       <span> Cosas Feas </span>
     </button>
   </div>
