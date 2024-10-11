@@ -21,7 +21,12 @@ export class SplashPage {
   public router: Router = inject(Router);
   authService: UsersService = inject(UsersService);
 
-  constructor() {
+  constructor() {}
+  ngOnInit(): void {
+    this.inicarSplash();
+  }
+
+  private inicarSplash() {
     setTimeout(() => {
       this.authService.splash = true;
       this.router.navigateByUrl('/login');
