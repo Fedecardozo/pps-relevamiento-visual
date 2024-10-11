@@ -1,0 +1,28 @@
+@if(this.fire.termino) {
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Mis imagenes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  @for (item of this.fire.misImgs; track $index) {
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Usuario: {{item.usuario}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="img">
+        <img [src]="item.path" alt="" />
+      </div>
+    </ion-card-content>
+    <div class="div-btns">
+      <ion-card-subtitle>Fecha: {{item.fecha}}</ion-card-subtitle>
+    </div>
+  </ion-card>
+  }
+</ion-content>
+}

@@ -10,6 +10,7 @@ import {
 } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { Imagen } from '../modals/imagen';
+import { UsersService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,8 @@ export class FirebaseService {
   private app: string = '/RelevamientoVisual';
   storage: AngularFireStorage = inject(AngularFireStorage);
   termino: boolean = false;
+  user: UsersService = inject(UsersService);
+  misImgs: Imagen[] = [];
 
   async uploadImage(path: string, data_url: string) {
     const newPath = this.app + path;
@@ -42,8 +45,13 @@ export class FirebaseService {
           algo.listAll().forEach((item) => {
             item.items.forEach((url) => {
               this.getImageUrl(url.fullPath).subscribe((next) => {
-                array.push(new Imagen(folderRef.name, url.name, next));
-                array.sort((a, b) => b.fechaNumber - a.fechaNumber);
+                if (folderRef.name === this.user.correo) {
+                  this.misImgs.push(new Imagen(folderRef.name, url.name, next));
+                  this.misImgs.sort((a, b) => b.fechaNumber - a.fechaNumber);
+                } else {
+                  array.push(new Imagen(folderRef.name, url.name, next));
+                  array.sort((a, b) => b.fechaNumber - a.fechaNumber);
+                }
               });
             });
           });

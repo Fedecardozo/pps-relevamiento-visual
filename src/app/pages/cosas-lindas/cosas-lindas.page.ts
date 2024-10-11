@@ -23,6 +23,7 @@ import { UsersService } from 'src/app/services/user.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { Imagen } from 'src/app/modals/imagen';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-cosas-lindas',
   templateUrl: './cosas-lindas.page.html',
@@ -47,6 +48,7 @@ import { Imagen } from 'src/app/modals/imagen';
     IonToolbar,
     CommonModule,
     FormsModule,
+    RouterLink,
   ],
 })
 export class CosasLindasPage implements OnInit {
