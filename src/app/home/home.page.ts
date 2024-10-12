@@ -41,10 +41,6 @@ export class HomePage {
   fire: FirebaseService = inject(FirebaseService);
   ocultarHome: boolean = false;
 
-  ngOnInit(): void {
-    this.ocultarHome = false;
-  }
-
   //Tomar o seleccionar una imagen
   async takeImage(title: string) {
     this.imgUrl = (await this.utils.takePicture(title)).dataUrl;
@@ -59,6 +55,7 @@ export class HomePage {
         Alert.bien('Se subio correctamente', '').then((res) => {
           if (res.isConfirmed) {
             this.router.navigateByUrl('/cosas-lindas');
+            this.ocultarHome = false;
           }
         });
       } else {
@@ -79,7 +76,10 @@ export class HomePage {
 
       if (await this.subirDatabaseStorage(path, idUrl, 'imagenes_feas')) {
         Alert.bien('Se subio correctamente', '').then((res) => {
-          if (res.isConfirmed) this.router.navigateByUrl('/cosas-feas');
+          if (res.isConfirmed) {
+            this.router.navigateByUrl('/cosas-feas');
+            this.ocultarHome = false;
+          }
         });
       } else {
         Alert.error(
