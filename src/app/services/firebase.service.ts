@@ -17,7 +17,6 @@ import { UsersService } from './user.service';
 })
 export class FirebaseService {
   constructor(private firestore: AngularFirestore) {}
-  private app: string = '/RelevamientoVisual';
   storage: AngularFireStorage = inject(AngularFireStorage);
   termino: boolean = false;
   user: UsersService = inject(UsersService);
@@ -26,20 +25,19 @@ export class FirebaseService {
   sub?: Subscription;
 
   async uploadImage(path: string, data_url: string) {
-    const newPath = this.app + path;
-    return uploadString(ref(getStorage(), newPath), data_url, 'data_url').then(
+    return uploadString(ref(getStorage(), path), data_url, 'data_url').then(
       () => {
-        return getDownloadURL(ref(getStorage(), newPath));
+        return getDownloadURL(ref(getStorage(), path));
       }
     );
   }
 
   //Agregar una imagen a la base de datos
-  agregarImagenDb(img: Imagen, nameCollection: string) {
+  async agregarImagenDb(img: Imagen, nameCollection: string) {
     const colImagenes = this.firestore.collection(nameCollection);
     const documento = colImagenes.doc(img.fecha.toString());
     // user.setId(documento.ref.id);
-    documento.set({ ...img });
+    await documento.set({ ...img });
   }
 
   //Agregar los que le dan me gusta

@@ -12,6 +12,7 @@ import { UsersService } from '../services/user.service';
 import { UtilsService } from '../services/utils.service';
 import { FirebaseService } from '../services/firebase.service';
 import { Imagen } from '../modals/imagen';
+import { Alert } from '../modals/alert';
 
 @Component({
   selector: 'app-home',
@@ -38,7 +39,7 @@ export class HomePage {
   fire: FirebaseService = inject(FirebaseService);
 
   ngOnInit(): void {
-    console.log(this.auth.correo);
+    // console.log(this.auth.correo);
   }
 
   //Tomar o seleccionar una imagen
@@ -47,37 +48,53 @@ export class HomePage {
   }
 
   subirCosasLindas() {
-    this.takeImage('Subir una foto para cosas lindas').then(() => {
+    this.takeImage('Subir una foto para cosas lindas').then(async () => {
       const idUrl: number = Date.now();
       const path: string = `/CosasLindas/${idUrl}`;
 
-      this.subirDatabaseStorage(path, idUrl, 'imagenes_lindas');
+      if (await this.subirDatabaseStorage(path, idUrl, 'imagenes_lindas')) {
+        Alert.error('Se subio correctamente', '');
+        this.router.navigateByUrl('/cosas-lindas');
+      } else {
+        Alert.error('Error', 'hubo un error al cargar la imagen');
+      }
     });
   }
 
   subirCosasFeas() {
-    this.takeImage('Subir una foto para cosas feas').then(() => {
+    this.takeImage('Subir una foto para cosas feas').then(async () => {
       const idUrl: number = Date.now();
       const path: string = `/CosasFeas/${idUrl}`;
 
-      this.subirDatabaseStorage(path, idUrl, 'imagenes_feas');
+      if (await this.subirDatabaseStorage(path, idUrl, 'imagenes_feas')) {
+        Alert.error('Se subio correctamente', '');
+        this.router.navigateByUrl('/cosas-feas');
+      } else {
+        Alert.error('Error', 'hubo un error al cargar la imagen');
+      }
     });
   }
 
-  subirDatabaseStorage(path: string, idUrl: number, collectioName: string) {
+  async subirDatabaseStorage(
+    path: string,
+    idUrl: number,
+    collectioName: string
+  ): Promise<boolean> {
+    let retorno: boolean = false;
     if (this.imgUrl) {
-      this.fire.uploadImage(path, this.imgUrl).then((res) => {
+      await this.fire.uploadImage(path, this.imgUrl).then(async (res) => {
         if (res && this.userService.correo && this.imgUrl) {
           const imagen: Imagen = new Imagen(
             this.userService.correo,
             idUrl,
             this.imgUrl
           );
-          this.fire.agregarImagenDb(imagen, collectioName);
-          console.log(imagen);
+          await this.fire.agregarImagenDb(imagen, collectioName);
+          retorno = imagen ? true : false;
         }
       });
     }
+    return retorno;
   }
 
   async cerrarSesion() {
