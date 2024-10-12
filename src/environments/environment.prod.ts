@@ -1,11 +1,11 @@
 export const environment = {
   production: true,
   firebase: {
-    projectId: 'ppsusuarios',
-    appId: '1:638517877164:web:aeaba8c28167829f3dc209',
-    storageBucket: 'ppsusuarios.appspot.com',
-    apiKey: 'AIzaSyCAAzT7j4qFO3mDef4M_VQBJLLcpPkZ3gM',
-    authDomain: 'ppsusuarios.firebaseapp.com',
-    messagingSenderId: '638517877164',
+    projectId: 'relevamiento-9920e',
+    appId: '1:660598558698:web:54561fd89a0bbc29a8ac93',
+    storageBucket: 'relevamiento-9920e.appspot.com',
+    apiKey: 'AIzaSyDAqv6022dR1FYpNYNSUF3omUkaGeYF6Ww',
+    authDomain: 'relevamiento-9920e.firebaseapp.com',
+    messagingSenderId: '660598558698',
   },
 };

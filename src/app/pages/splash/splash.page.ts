@@ -29,8 +29,8 @@ export class SplashPage {
   private inicarSplash() {
     setTimeout(() => {
       this.authService.splash = true;
-      this.router.navigateByUrl('/home');
-    }, 100);
+      this.router.navigateByUrl('/login');
+    }, 5200);
     // 5200
   }
 }

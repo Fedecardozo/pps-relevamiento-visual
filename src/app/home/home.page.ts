@@ -37,6 +37,10 @@ export class HomePage {
   userService: UsersService = inject(UsersService);
   fire: FirebaseService = inject(FirebaseService);
 
+  ngOnInit(): void {
+    console.log(this.auth.correo);
+  }
+
   //Tomar o seleccionar una imagen
   async takeImage(title: string) {
     this.imgUrl = (await this.utils.takePicture(title)).dataUrl;
