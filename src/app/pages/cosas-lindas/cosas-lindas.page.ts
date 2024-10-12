@@ -65,7 +65,7 @@ export class CosasLindasPage implements OnInit {
 
   ngOnInit() {
     //imagenes a mostrar
-    this.util.mostrarSpinner('Cargando imagenes...');
+    this.util.mostrarSpinner('Cargando cosas lindas...');
     this.obtenerImagenes();
     console.log(this.imagenes);
   }
@@ -89,6 +89,7 @@ export class CosasLindasPage implements OnInit {
         this.imagenes.sort((a, b) => b.fecha - a.fecha);
         if (this.imagenes.length) {
           this.util.ocultarSpinner();
+          this.sub?.unsubscribe();
         }
       });
   }

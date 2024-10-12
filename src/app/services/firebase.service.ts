@@ -42,8 +42,8 @@ export class FirebaseService {
 
   //Agregar los que le dan me gusta
   updateImg(img: Imagen, cosa: string = 'lindas') {
-    const doc = this.firestore.doc('images_' + cosa + '/' + img.fecha);
-    doc.update({ ...img });
+    const doc = this.firestore.doc(`imagenes_${cosa}/${img.fecha}`);
+    doc.update({ likes: img.likes });
   }
 
   //Obtener likes
