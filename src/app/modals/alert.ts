@@ -15,11 +15,24 @@ export class Alert {
   };
 
   static error(titulo: string, texto: string) {
-    Swal.fire(Alert.base);
+    const alert = Swal.fire(Alert.base);
     Swal.update({
       icon: 'error',
       title: titulo,
       text: texto,
     });
+
+    return alert;
+  }
+
+  static bien(titulo: string, texto: string) {
+    const alert = Swal.fire(Alert.base);
+    Swal.update({
+      icon: 'success',
+      title: titulo,
+      text: texto,
+    });
+
+    return alert;
   }
 }

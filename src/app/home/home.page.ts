@@ -7,6 +7,7 @@ import {
   IonContent,
   IonTabButton,
   IonButton,
+  IonSpinner,
 } from '@ionic/angular/standalone';
 import { UsersService } from '../services/user.service';
 import { UtilsService } from '../services/utils.service';
@@ -20,6 +21,7 @@ import { Alert } from '../modals/alert';
   styleUrls: ['home.page.scss'],
   standalone: true,
   imports: [
+    IonSpinner,
     IonButton,
     IonTabButton,
     IonHeader,
@@ -37,9 +39,10 @@ export class HomePage {
   utils: UtilsService = inject(UtilsService);
   userService: UsersService = inject(UsersService);
   fire: FirebaseService = inject(FirebaseService);
+  ocultarHome: boolean = false;
 
   ngOnInit(): void {
-    // console.log(this.auth.correo);
+    this.ocultarHome = false;
   }
 
   //Tomar o seleccionar una imagen
@@ -53,10 +56,18 @@ export class HomePage {
       const path: string = `/CosasLindas/${idUrl}`;
 
       if (await this.subirDatabaseStorage(path, idUrl, 'imagenes_lindas')) {
-        Alert.error('Se subio correctamente', '');
-        this.router.navigateByUrl('/cosas-lindas');
+        Alert.bien('Se subio correctamente', '').then((res) => {
+          if (res.isConfirmed) {
+            this.router.navigateByUrl('/cosas-lindas');
+          }
+        });
       } else {
-        Alert.error('Error', 'hubo un error al cargar la imagen');
+        Alert.error(
+          'Intentelo nuevamente',
+          'hubo un error al cargar la imagen'
+        ).then((res) => {
+          if (res.isConfirmed) this.ocultarHome = false;
+        });
       }
     });
   }
@@ -67,10 +78,16 @@ export class HomePage {
       const path: string = `/CosasFeas/${idUrl}`;
 
       if (await this.subirDatabaseStorage(path, idUrl, 'imagenes_feas')) {
-        Alert.error('Se subio correctamente', '');
-        this.router.navigateByUrl('/cosas-feas');
+        Alert.bien('Se subio correctamente', '').then((res) => {
+          if (res.isConfirmed) this.router.navigateByUrl('/cosas-feas');
+        });
       } else {
-        Alert.error('Error', 'hubo un error al cargar la imagen');
+        Alert.error(
+          'Intentelo nuevamente',
+          'hubo un error al cargar la imagen'
+        ).then((res) => {
+          if (res.isConfirmed) this.ocultarHome = false;
+        });
       }
     });
   }
@@ -81,6 +98,9 @@ export class HomePage {
     collectioName: string
   ): Promise<boolean> {
     let retorno: boolean = false;
+    this.utils.mostrarSpinner('Subiendo imagen...');
+    this.ocultarHome = true;
+
     if (this.imgUrl) {
       await this.fire.uploadImage(path, this.imgUrl).then(async (res) => {
         if (res && this.userService.correo && this.imgUrl) {
@@ -91,6 +111,7 @@ export class HomePage {
           );
           await this.fire.agregarImagenDb(imagen, collectioName);
           retorno = imagen ? true : false;
+          this.utils.ocultarSpinner();
         }
       });
     }

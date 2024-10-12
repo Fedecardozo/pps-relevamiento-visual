@@ -6,6 +6,8 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 })
 export class UtilsService {
   constructor() {}
+  spinner: boolean = false;
+  tituloSpinner: string = '';
 
   async takePicture(promptLabelHeader: string) {
     return await Camera.getPhoto({
@@ -17,5 +19,14 @@ export class UtilsService {
       promptLabelPhoto: 'Selecciona una imagen',
       promptLabelPicture: 'Toma una foto',
     });
+  }
+
+  mostrarSpinner(tituloSpinner: string = '') {
+    this.spinner = true;
+    this.tituloSpinner = tituloSpinner;
+  }
+
+  ocultarSpinner() {
+    this.spinner = false;
   }
 }

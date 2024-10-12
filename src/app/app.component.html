@@ -1,1 +1,9 @@
-<ion-router-outlet></ion-router-outlet>
+@if(this.util.spinner) {
+<main>
+  <h2>{{ this.util.tituloSpinner }}</h2>
+  <div id="div">
+    <ion-spinner color="tertiary"></ion-spinner>
+  </div>
+</main>
+}
+<ion-router-outlet [hidden]="this.util.spinner"></ion-router-outlet>

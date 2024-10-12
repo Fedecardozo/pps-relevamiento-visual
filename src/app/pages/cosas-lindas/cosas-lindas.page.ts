@@ -18,6 +18,7 @@ import {
   IonTabButton,
   IonCol,
   IonRow,
+  IonSpinner,
 } from '@ionic/angular/standalone';
 import { UsersService } from 'src/app/services/user.service';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -30,6 +31,7 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./cosas-lindas.page.scss'],
   standalone: true,
   imports: [
+    IonSpinner,
     IonRow,
     IonCol,
     IonTabButton,
