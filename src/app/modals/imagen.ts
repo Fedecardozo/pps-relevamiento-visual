@@ -2,11 +2,34 @@ export class Imagen {
   usuario: string;
   fecha: number;
   path: string;
+  likes: string[];
 
   constructor(usuario: string, fecha: number, path: string) {
     this.usuario = usuario;
     this.fecha = fecha;
     this.path = path;
+    this.likes = [];
+  }
+
+  getLike(correo: string) {
+    const index: number = this.likes.indexOf(correo);
+    if (index >= 0) return this.likes[index];
+    else return null;
+  }
+
+  addLike(correo: string) {
+    this.likes.push(correo);
+    return this.likes;
+  }
+
+  removeLike(correo: string) {
+    const index: number = this.likes.indexOf(correo);
+    if (index >= 0) this.likes.splice(index, 1);
+    return this.likes;
+  }
+
+  setLike(likes: string[]) {
+    this.likes = likes;
   }
 
   convertirFecha() {

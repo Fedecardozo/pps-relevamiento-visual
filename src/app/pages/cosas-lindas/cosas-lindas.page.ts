@@ -60,6 +60,7 @@ export class CosasLindasPage implements OnInit {
   util: UtilsService = inject(UtilsService);
   imagenes: Imagen[] = [];
   sub?: Subscription;
+
   constructor() {}
 
   ngOnInit() {
@@ -76,7 +77,14 @@ export class CosasLindasPage implements OnInit {
       .subscribe((next) => {
         const aux: Imagen[] = next as Imagen[];
         aux.forEach((item) => {
-          this.imagenes.push(new Imagen(item.usuario, item.fecha, item.path));
+          //solo cargo las que no son del usuario
+          if (item.usuario !== this.userService.correo) {
+            const img: Imagen = new Imagen(item.usuario, item.fecha, item.path);
+            this.imagenes.push(img);
+            if (item.likes && item.likes.length) {
+              img.setLike(item.likes);
+            }
+          }
         });
         this.imagenes.sort((a, b) => b.fecha - a.fecha);
         if (this.imagenes.length) {
@@ -85,8 +93,17 @@ export class CosasLindasPage implements OnInit {
       });
   }
 
+  agregarLike(imagen: Imagen) {
+    imagen.addLike(this.userService.correo || '');
+    this.fire.updateImg(imagen);
+  }
+
+  quitarLike(imagen: Imagen) {
+    imagen.removeLike(this.userService.correo || '');
+    this.fire.updateImg(imagen);
+  }
+
   ngOnDestroy(): void {
-    console.log('ejecuto destroy');
     this.sub?.unsubscribe();
   }
 }

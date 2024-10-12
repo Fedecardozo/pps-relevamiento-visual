@@ -6,9 +6,7 @@ import {
   uploadString,
   ref,
   getDownloadURL,
-  listAll,
 } from '@angular/fire/storage';
-import { Observable, Subscription } from 'rxjs';
 import { Imagen } from '../modals/imagen';
 import { UsersService } from './user.service';
 
@@ -43,15 +41,15 @@ export class FirebaseService {
   }
 
   //Agregar los que le dan me gusta
-  agregarMegusta(imgId: Number) {
-    const colImagenes = this.firestore.collection('likes');
-    const documento = colImagenes.doc();
-    const obj = {
-      id: documento.ref.id,
-      correo: this.user.correo,
-      idImg: imgId,
-    };
-    documento.set({ ...obj });
+  updateImg(img: Imagen, cosa: string = 'lindas') {
+    const doc = this.firestore.doc('images_' + cosa + '/' + img.fecha);
+    doc.update({ ...img });
+  }
+
+  //Obtener likes
+  getLikes(lindasFeas: string = 'lindas') {
+    const col = this.firestore.collection('likes_' + lindasFeas);
+    return col;
   }
 
   //Quitar me gusta

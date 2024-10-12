@@ -65,7 +65,9 @@ export class MisImagenesPage implements OnInit {
       .subscribe((next) => {
         const aux: Imagen[] = next as Imagen[];
         aux.forEach((item) => {
-          this.imagenes.push(new Imagen(item.usuario, item.fecha, item.path));
+          //Solo cargo las que son del usuario
+          if (item.usuario === this.userService.correo)
+            this.imagenes.push(new Imagen(item.usuario, item.fecha, item.path));
         });
         this.imagenes.sort((a, b) => b.fecha - a.fecha);
         if (this.imagenes.length) {

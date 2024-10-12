@@ -42,9 +42,9 @@ export class HomePage {
   ocultarHome: boolean = false;
 
   //Cuando termine borrar esta linea onit
-  ngOnInit(): void {
-    this.router.navigateByUrl('/cosas-lindas');
-  }
+  // ngOnInit(): void {
+  //   this.router.navigateByUrl('/cosas-lindas');
+  // }
 
   //Tomar o seleccionar una imagen
   async takeImage(title: string) {

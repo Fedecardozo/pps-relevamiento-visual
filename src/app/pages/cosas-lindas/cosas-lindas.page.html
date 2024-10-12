@@ -15,7 +15,6 @@
 
 <ion-content>
   @for (item of this.imagenes; track $index) {
-
   <ion-card>
     <ion-card-header>
       <ion-card-title>Usuario: {{item.usuario}}</ion-card-title>
@@ -28,13 +27,21 @@
     </ion-card-content>
     <div class="div-btns">
       <ion-card-subtitle>Fecha: {{item.convertirFecha()}}</ion-card-subtitle>
-      <ion-button shape="round" color="tertiary" fill="outline">
-        @if(true) {
+      @if(!item.getLike(this.userService.correo||'')) {
+      <ion-button
+        shape="round"
+        color="tertiary"
+        fill="outline"
+        (click)="agregarLike(item)"
+      >
         <i class="fa-regular fa-heart"></i>
-        } @else {
-        <i class="fa-solid fa-heart"></i>
-        }
       </ion-button>
+      } @else {
+      <ion-button shape="round" color="danger" (click)="quitarLike(item)">
+        <i class="fa-solid fa-heart"></i>
+      </ion-button>
+
+      }
     </div>
   </ion-card>
   }
