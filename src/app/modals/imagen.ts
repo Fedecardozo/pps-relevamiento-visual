@@ -1,17 +1,16 @@
 export class Imagen {
   usuario: string;
-  fecha: string;
+  fecha: number;
   path: string;
-  fechaNumber: number;
 
-  constructor(usuario: string, fecha: string, path: string) {
+  constructor(usuario: string, fecha: number, path: string) {
     this.usuario = usuario;
-    this.fecha = this.convertirFecha(new Date(Number.parseInt(fecha)));
+    this.fecha = fecha;
     this.path = path;
-    this.fechaNumber = Number.parseInt(fecha);
   }
 
-  convertirFecha(date: Date) {
+  convertirFecha() {
+    const date: Date = new Date(this.fecha);
     const year = date.getFullYear();
     const month = date.getMonth() + 1; // Los meses van de 0 a 11
     const day = date.getDate();

@@ -40,9 +40,10 @@ import { Imagen } from 'src/app/modals/imagen';
 })
 export class MisImagenesPage implements OnInit {
   fire: FirebaseService = inject(FirebaseService);
-  imgUrl: string | undefined = '';
 
   constructor() {}
 
   ngOnInit() {}
+
+  ngOnDestroy(): void {}
 }

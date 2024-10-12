@@ -29,7 +29,7 @@ export class SplashPage {
   private inicarSplash() {
     setTimeout(() => {
       this.authService.splash = true;
-      this.router.navigateByUrl('/cosas-lindas');
+      this.router.navigateByUrl('/home');
     }, 100);
     // 5200
   }

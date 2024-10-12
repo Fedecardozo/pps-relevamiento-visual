@@ -8,7 +8,7 @@ import {
   getDownloadURL,
   listAll,
 } from '@angular/fire/storage';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Imagen } from '../modals/imagen';
 import { UsersService } from './user.service';
 
@@ -22,6 +22,8 @@ export class FirebaseService {
   termino: boolean = false;
   user: UsersService = inject(UsersService);
   misImgs: Imagen[] = [];
+  array: Imagen[] = [];
+  sub?: Subscription;
 
   async uploadImage(path: string, data_url: string) {
     const newPath = this.app + path;
@@ -32,36 +34,27 @@ export class FirebaseService {
     );
   }
 
-  getImages(array: Imagen[], path: string): void {
-    // Create a reference under which you want to list
-    const newPath = this.app + path;
-    const listRef = ref(getStorage(), newPath);
-
-    listAll(listRef)
-      .then((res) => {
-        res.prefixes.forEach((folderRef) => {
-          const algo = this.storage.ref(newPath + '/' + folderRef.name);
-          //Obtener usuario
-          algo.listAll().forEach((item) => {
-            item.items.forEach((url) => {
-              this.getImageUrl(url.fullPath).subscribe((next) => {
-                if (folderRef.name === this.user.correo) {
-                  this.misImgs.push(new Imagen(folderRef.name, url.name, next));
-                  this.misImgs.sort((a, b) => b.fechaNumber - a.fechaNumber);
-                } else {
-                  array.push(new Imagen(folderRef.name, url.name, next));
-                  array.sort((a, b) => b.fechaNumber - a.fechaNumber);
-                }
-              });
-            });
-          });
-        });
-        this.termino = true;
-      })
-      .catch((error) => {
-        console.log('Hubo un error', error);
-      });
+  //Agregar una imagen a la base de datos
+  agregarImagenDb(img: Imagen, nameCollection: string) {
+    const colImagenes = this.firestore.collection(nameCollection);
+    const documento = colImagenes.doc(img.fecha.toString());
+    // user.setId(documento.ref.id);
+    documento.set({ ...img });
   }
+
+  //Agregar los que le dan me gusta
+  agregarMegusta(imgId: Number) {
+    const colImagenes = this.firestore.collection('likes');
+    const documento = colImagenes.doc();
+    const obj = {
+      id: documento.ref.id,
+      correo: this.user.correo,
+      idImg: imgId,
+    };
+    documento.set({ ...obj });
+  }
+
+  //Quitar me gusta
 
   getImageUrl(filePath: string): Observable<string> {
     const fileRef = this.storage.ref(filePath);

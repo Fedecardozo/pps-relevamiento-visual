@@ -53,28 +53,13 @@ import { RouterLink } from '@angular/router';
 })
 export class CosasLindasPage implements OnInit {
   userService: UsersService = inject(UsersService);
-  utils: UtilsService = inject(UtilsService);
   fire: FirebaseService = inject(FirebaseService);
-  imgUrl: string | undefined = '';
-  listImg: Imagen[] = [];
 
   constructor() {}
 
-  ngOnInit() {
-    this.fire.getImages(this.listImg, '/CosasLindas');
-  }
+  ngOnInit() {}
 
-  subirCosasLindas() {
-    this.takeImage('Subir una foto para cosas lindas').then(() => {
-      let path = `/CosasLindas/${this.userService.correo}/${Date.now()}`;
-      if (this.imgUrl) {
-        this.fire.uploadImage(path, this.imgUrl);
-      }
-    });
-  }
-
-  //Tomar o seleccionar una imagen
-  async takeImage(title: string) {
-    this.imgUrl = (await this.utils.takePicture(title)).dataUrl;
+  ngOnDestroy(): void {
+    this.fire.sub?.unsubscribe();
   }
 }

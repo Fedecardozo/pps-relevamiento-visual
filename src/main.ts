@@ -34,3 +34,34 @@ bootstrapApplication(AppComponent, {
 });
 
 defineCustomElements(window);
+
+// getImages(path: string): void {
+//     // Create a reference under which you want to list
+//     const newPath = this.app + path;
+//     const listRef = ref(getStorage(), newPath);
+
+//     listAll(listRef)
+//       .then((res) => {
+//         res.prefixes.forEach((folderRef) => {
+//           const algo = this.storage.ref(newPath + '/' + folderRef.name);
+//           //Obtener usuario
+//           algo.listAll().forEach((item) => {
+//             item.items.forEach((url) => {
+//               this.sub = this.getImageUrl(url.fullPath).subscribe((next) => {
+//                 if (folderRef.name === this.user.correo) {
+//                   this.misImgs.push(new Imagen(folderRef.name, url.name, next));
+//                   this.misImgs.sort((a, b) => b.fechaNumber - a.fechaNumber);
+//                 } else {
+//                   this.array.push(new Imagen(folderRef.name, url.name, next));
+//                   this.array.sort((a, b) => b.fechaNumber - a.fechaNumber);
+//                 }
+//               });
+//             });
+//           });
+//         });
+//         this.termino = true;
+//       })
+//       .catch((error) => {
+//         console.log('Hubo un error', error);
+//       });
+//   }

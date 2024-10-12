@@ -7,16 +7,16 @@
         Mis imagenes
         <i class="fa-solid fa-images"></i>
       </button>
-      <button (click)="subirCosasLindas()">
-        Subir foto
-        <i class="fa-solid fa-camera"></i>
+      <button>
+        Graficos
+        <i class="fa-solid fa-chart-pie"></i>
       </button>
     </ion-row>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  @for (item of this.listImg; track $index) {
+  @for (item of this.fire.array; track $index) {
 
   <ion-card>
     <ion-card-header>
