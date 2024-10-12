@@ -41,6 +41,11 @@ export class HomePage {
   fire: FirebaseService = inject(FirebaseService);
   ocultarHome: boolean = false;
 
+  //Cuando termine borrar esta linea onit
+  ngOnInit(): void {
+    this.router.navigateByUrl('/cosas-lindas');
+  }
+
   //Tomar o seleccionar una imagen
   async takeImage(title: string) {
     this.imgUrl = (await this.utils.takePicture(title)).dataUrl;

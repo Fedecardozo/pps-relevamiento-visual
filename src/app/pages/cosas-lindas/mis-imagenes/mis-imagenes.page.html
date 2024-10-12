@@ -1,17 +1,24 @@
-@if(this.fire.termino) {
-
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Mis imagenes</ion-title>
+    <ion-row class="ion-justify-content-around">
+      <button routerLink="/cosas-lindas">
+        Imagenes
+        <i class="fa-solid fa-images"></i>
+      </button>
+      <button>
+        Graficos
+        <i class="fa-solid fa-chart-pie"></i>
+      </button>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  @for (item of this.fire.misImgs; track $index) {
+<ion-content class="ion-margin-bottom">
+  @for (item of this.imagenes; track $index) {
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Usuario: {{item.usuario}}</ion-card-title>
+      <ion-card-title>Fecha: {{item.convertirFecha()}}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
@@ -19,10 +26,6 @@
         <img [src]="item.path" alt="" />
       </div>
     </ion-card-content>
-    <div class="div-btns">
-      <ion-card-subtitle>Fecha: {{item.fecha}}</ion-card-subtitle>
-    </div>
   </ion-card>
   }
 </ion-content>
-}

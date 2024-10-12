@@ -18,11 +18,7 @@ import { UsersService } from './user.service';
 export class FirebaseService {
   constructor(private firestore: AngularFirestore) {}
   storage: AngularFireStorage = inject(AngularFireStorage);
-  termino: boolean = false;
   user: UsersService = inject(UsersService);
-  misImgs: Imagen[] = [];
-  array: Imagen[] = [];
-  sub?: Subscription;
 
   async uploadImage(path: string, data_url: string) {
     return uploadString(ref(getStorage(), path), data_url, 'data_url').then(
@@ -40,6 +36,12 @@ export class FirebaseService {
     await documento.set({ ...img });
   }
 
+  //Obtener las imagenes
+  getImagenes(lindasFeas: string = 'lindas') {
+    const col = this.firestore.collection('imagenes_' + lindasFeas);
+    return col;
+  }
+
   //Agregar los que le dan me gusta
   agregarMegusta(imgId: Number) {
     const colImagenes = this.firestore.collection('likes');
@@ -54,8 +56,8 @@ export class FirebaseService {
 
   //Quitar me gusta
 
-  getImageUrl(filePath: string): Observable<string> {
-    const fileRef = this.storage.ref(filePath);
-    return fileRef.getDownloadURL(); // Devuelve un Observable con la URL
-  }
+  // getImageUrl(filePath: string): Observable<string> {
+  //   const fileRef = this.storage.ref(filePath);
+  //   return fileRef.getDownloadURL(); // Devuelve un Observable con la URL
+  // }
 }
