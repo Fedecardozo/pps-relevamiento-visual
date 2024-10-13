@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-row class="ion-justify-content-around">
+      <button routerLink="/cosas-feas">
+        Imagenes
+        <i class="fa-solid fa-images"></i>
+      </button>
+      <button>
+        Graficos
+        <i class="fa-solid fa-chart-simple"></i>
+      </button>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-margin-bottom">
+  @for (item of this.imagenes; track $index) {
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Fecha: {{item.convertirFecha()}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="img">
+        <img [src]="item.path" alt="" />
+      </div>
+    </ion-card-content>
+  </ion-card>
+  }
+</ion-content>

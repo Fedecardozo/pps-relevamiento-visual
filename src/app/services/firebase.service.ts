@@ -46,14 +46,6 @@ export class FirebaseService {
     doc.update({ likes: img.likes });
   }
 
-  //Obtener likes
-  getLikes(lindasFeas: string = 'lindas') {
-    const col = this.firestore.collection('likes_' + lindasFeas);
-    return col;
-  }
-
-  //Quitar me gusta
-
   // getImageUrl(filePath: string): Observable<string> {
   //   const fileRef = this.storage.ref(filePath);
   //   return fileRef.getDownloadURL(); // Devuelve un Observable con la URL

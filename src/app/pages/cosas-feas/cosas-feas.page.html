@@ -1,13 +1,52 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>cosas_feas</ion-title>
+    <ion-row class="ion-justify-content-around">
+      <button routerLink="/mis-imagenes-feas">
+        Mis imagenes
+        <i class="fa-solid fa-images"></i>
+      </button>
+      <button>
+        Graficos
+        <i class="fa-solid fa-chart-simple"></i>
+      </button>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">cosas_feas</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<app-camara
+  [cosas]="this.lower"
+  [cosasCapitalize]="this.capitalize"
+></app-camara>
+<ion-content>
+  @for (item of this.imagenes; track $index) {
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Usuario: {{item.usuario}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="img">
+        <img [src]="item.path" />
+      </div>
+    </ion-card-content>
+    <div class="div-btns">
+      <ion-card-subtitle>Fecha: {{item.convertirFecha()}}</ion-card-subtitle>
+      @if(!item.getLike(this.userService.correo||'')) {
+      <ion-button
+        shape="round"
+        color="tertiary"
+        fill="outline"
+        (click)="agregarLike(item)"
+      >
+        <i class="fa-regular fa-heart"></i>
+      </ion-button>
+      } @else {
+      <ion-button shape="round" color="danger" (click)="quitarLike(item)">
+        <i class="fa-solid fa-heart"></i>
+      </ion-button>
+
+      }
+    </div>
+  </ion-card>
+  }
 </ion-content>

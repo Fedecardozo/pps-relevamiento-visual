@@ -18,6 +18,7 @@ img {
 
 ion-card-content {
   padding: 0;
+  padding-bottom: 20px;
 }
 
 .img {
@@ -27,11 +28,7 @@ ion-card-content {
 
 .div-btns {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   height: 60px;
-}
-
-ion-button {
-  width: 70px;
 }
