@@ -33,18 +33,4 @@ export class CosasFeasPage implements OnInit {
   constructor() {}
 
   ngOnInit() {}
-
-  subirCosasFeas() {
-    this.takeImage('Subir una foto para cosas Feas').then(() => {
-      let path = `/CosasFeas/${this.userService.correo}/${Date.now()}`;
-      if (this.imgUrl) {
-        this.fire.uploadImage(path, this.imgUrl);
-      }
-    });
-  }
-
-  //Tomar o seleccionar una imagen
-  async takeImage(title: string) {
-    this.imgUrl = (await this.utils.takePicture(title)).dataUrl;
-  }
 }

@@ -9,15 +9,12 @@ export class UtilsService {
   spinner: boolean = false;
   tituloSpinner: string = '';
 
-  async takePicture(promptLabelHeader: string) {
+  async takePicture() {
     return await Camera.getPhoto({
       quality: 90,
-      allowEditing: true,
+      allowEditing: false,
       resultType: CameraResultType.DataUrl,
-      source: CameraSource.Prompt,
-      promptLabelHeader,
-      promptLabelPhoto: 'Selecciona una imagen',
-      promptLabelPicture: 'Toma una foto',
+      source: CameraSource.Camera,
     });
   }
 

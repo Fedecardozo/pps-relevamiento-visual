@@ -8,6 +8,9 @@ import {
   IonTabButton,
   IonButton,
   IonSpinner,
+  IonFab,
+  IonFabButton,
+  IonIcon,
 } from '@ionic/angular/standalone';
 import { UsersService } from '../services/user.service';
 import { UtilsService } from '../services/utils.service';
@@ -21,6 +24,9 @@ import { Alert } from '../modals/alert';
   styleUrls: ['home.page.scss'],
   standalone: true,
   imports: [
+    IonIcon,
+    IonFabButton,
+    IonFab,
     IonSpinner,
     IonButton,
     IonTabButton,
@@ -47,12 +53,12 @@ export class HomePage {
   // }
 
   //Tomar o seleccionar una imagen
-  async takeImage(title: string) {
-    this.imgUrl = (await this.utils.takePicture(title)).dataUrl;
+  async takeImage() {
+    this.imgUrl = (await this.utils.takePicture()).dataUrl;
   }
 
   subirCosasLindas() {
-    this.takeImage('Subir una foto para cosas lindas').then(async () => {
+    this.takeImage().then(async () => {
       const idUrl: number = Date.now();
       const path: string = `/CosasLindas/${idUrl}`;
 
@@ -75,7 +81,7 @@ export class HomePage {
   }
 
   subirCosasFeas() {
-    this.takeImage('Subir una foto para cosas feas').then(async () => {
+    this.takeImage().then(async () => {
       const idUrl: number = Date.now();
       const path: string = `/CosasFeas/${idUrl}`;
 

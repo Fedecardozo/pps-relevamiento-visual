@@ -26,6 +26,7 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { Imagen } from 'src/app/modals/imagen';
 import { RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { CamaraPage } from '../../components/camara/camara.page';
 @Component({
   selector: 'app-cosas-lindas',
   templateUrl: './cosas-lindas.page.html',
@@ -52,6 +53,7 @@ import { Subscription } from 'rxjs';
     CommonModule,
     FormsModule,
     RouterLink,
+    CamaraPage,
   ],
 })
 export class CosasLindasPage implements OnInit {
