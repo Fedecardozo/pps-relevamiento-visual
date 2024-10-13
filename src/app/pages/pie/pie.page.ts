@@ -13,6 +13,7 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { Imagen } from 'src/app/modals/imagen';
 import { Subscription } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-pie',
@@ -27,6 +28,7 @@ import { Subscription } from 'rxjs';
     IonToolbar,
     CommonModule,
     FormsModule,
+    RouterLink,
   ],
 })
 export class PiePage {
