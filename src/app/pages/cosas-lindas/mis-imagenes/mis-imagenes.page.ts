@@ -72,7 +72,7 @@ export class MisImagenesPage implements OnInit {
         this.imagenes.sort((a, b) => b.fecha - a.fecha);
         if (this.imagenes.length) {
           this.util.ocultarSpinner();
-        }
+        } else this.util.ocultarSpinner();
       });
   }
 

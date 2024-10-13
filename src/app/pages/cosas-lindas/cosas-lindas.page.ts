@@ -92,7 +92,7 @@ export class CosasLindasPage implements OnInit {
         if (this.imagenes.length) {
           this.util.ocultarSpinner();
           this.sub?.unsubscribe();
-        }
+        } else this.util.ocultarSpinner();
       });
   }
 

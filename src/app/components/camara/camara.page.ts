@@ -42,6 +42,7 @@ export class CamaraPage {
   //Tomar o seleccionar una imagen
   async takeImage() {
     this.imgUrl = (await this.utils.takePicture()).dataUrl;
+    // console.log(this.imgUrl);
   }
 
   subirCosas() {
@@ -52,10 +53,8 @@ export class CamaraPage {
       if (
         await this.subirDatabaseStorage(path, idUrl, `imagenes_${this.cosas}`)
       ) {
-        this.utils.ocultarSpinner();
         Alert.bien('Se subio correctamente', '');
       } else {
-        this.utils.ocultarSpinner();
         Alert.error(
           'Intentelo nuevamente',
           'hubo un error al cargar la imagen'
@@ -78,10 +77,11 @@ export class CamaraPage {
           const imagen: Imagen = new Imagen(
             this.userService.correo,
             idUrl,
-            this.imgUrl
+            res
           );
           await this.fire.agregarImagenDb(imagen, collectioName);
           retorno = imagen ? true : false;
+          this.utils.ocultarSpinner();
         }
       });
     }
