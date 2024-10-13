@@ -24,24 +24,24 @@ export const routes: Routes = [
       import('./pages/login/login.page').then((m) => m.LoginPage),
     canActivate: [authGuard],
     canDeactivate: [authDeactivateGuard],
-  },  {
+  },
+  {
     path: 'cosas-lindas',
-    loadComponent: () => import('./pages/cosas-lindas/cosas-lindas.page').then( m => m.CosasLindasPage)
+    loadComponent: () =>
+      import('./pages/cosas-lindas/cosas-lindas.page').then(
+        (m) => m.CosasLindasPage
+      ),
   },
   {
     path: 'cosas-feas',
-    loadComponent: () => import('./pages/cosas-feas/cosas-feas.page').then( m => m.CosasFeasPage)
+    loadComponent: () =>
+      import('./pages/cosas-feas/cosas-feas.page').then((m) => m.CosasFeasPage),
   },
   {
     path: 'mis-imagenes',
-    loadComponent: () => import('./pages/cosas-lindas/mis-imagenes/mis-imagenes.page').then( m => m.MisImagenesPage)
+    loadComponent: () =>
+      import('./pages/cosas-lindas/mis-imagenes/mis-imagenes.page').then(
+        (m) => m.MisImagenesPage
+      ),
   },
-  {
-    path: 'camara',
-    loadComponent: () => import('./components/camara/camara.page').then( m => m.CamaraPage)
-  },
-
 ];
-
-// TEngo que hacer que valide el ingreso en login
-// y tambien tengo que permitir para cerrar sesion

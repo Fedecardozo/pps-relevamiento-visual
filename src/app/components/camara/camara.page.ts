@@ -52,8 +52,10 @@ export class CamaraPage {
       if (
         await this.subirDatabaseStorage(path, idUrl, `imagenes_${this.cosas}`)
       ) {
+        this.utils.ocultarSpinner();
         Alert.bien('Se subio correctamente', '');
       } else {
+        this.utils.ocultarSpinner();
         Alert.error(
           'Intentelo nuevamente',
           'hubo un error al cargar la imagen'
@@ -80,7 +82,6 @@ export class CamaraPage {
           );
           await this.fire.agregarImagenDb(imagen, collectioName);
           retorno = imagen ? true : false;
-          this.utils.ocultarSpinner();
         }
       });
     }
