@@ -43,9 +43,20 @@ export const routes: Routes = [
       import('./pages/cosas-lindas/mis-imagenes/mis-imagenes.page').then(
         (m) => m.MisImagenesPage
       ),
-  },  {
+  },
+  {
     path: 'mis-imagenes-feas',
-    loadComponent: () => import('./pages/cosas-feas/mis-imagenes-feas/mis-imagenes-feas.page').then( m => m.MisImagenesFeasPage)
+    loadComponent: () =>
+      import(
+        './pages/cosas-feas/mis-imagenes-feas/mis-imagenes-feas.page'
+      ).then((m) => m.MisImagenesFeasPage),
+  },
+  {
+    path: 'pie',
+    loadComponent: () => import('./pages/pie/pie.page').then((m) => m.PiePage),
+  },  {
+    path: 'barra',
+    loadComponent: () => import('./pages/barra/barra.page').then( m => m.BarraPage)
   },
 
 ];

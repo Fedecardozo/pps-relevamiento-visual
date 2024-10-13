@@ -49,4 +49,24 @@ export class Imagen {
     const date: Date = new Date(this.fecha);
     return date.toDateString();
   }
+
+  getCantidadLikes() {
+    return this.likes.length;
+  }
+
+  static ordenarPorLikes(listImagenes: Imagen[]) {
+    if (listImagenes.length) {
+      listImagenes.sort((a, b) => {
+        return b.getCantidadLikes() - a.getCantidadLikes();
+      });
+    }
+  }
+
+  static gerArrayLikes(listImagenes: Imagen[]) {
+    const listAux: number[] = [];
+    listImagenes.forEach((a) => {
+      listAux.push(a.getCantidadLikes());
+    });
+    return listAux;
+  }
 }
