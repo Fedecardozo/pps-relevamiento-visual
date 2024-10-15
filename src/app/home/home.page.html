@@ -1,31 +1,34 @@
-<header>
+<!-- <header>
   @if(this.auth.correo && this.auth.splash) {
-  <ion-button color="danger" (click)="cerrarSesion()">
+  <ion-button color="tertiary" (click)="cerrarSesion()">
     Cerrar sesión
   </ion-button>
   }
-</header>
+</header> -->
 
 <div class="container-menu">
-  <div class="div-child div-img">
-    <img src="/assets/logo.png" alt="Bienvendio" class="img-welcome" />
-  </div>
-  <div class="div-child">
-    <div class="text-luz">
-      <h2>Bienvenido</h2>
-    </div>
-    <p>
-      Nuestra aplicación te permite compartir fotos de lo que te gusta y lo que
-      no del edificio. ¡Vota por las mejores y peores cosas y ve los resultados!
-    </p>
-  </div>
-  <div class="div-child">
-    <button class="btn mb-3" routerLink="/cosas-lindas">
-      <span> Cosas Lindas </span>
-    </button>
+  <ion-button
+    routerLink="/cosas-lindas"
+    expand="block"
+    color="success"
+    class="btn-home"
+  >
+    Cosas Lindas
+  </ion-button>
 
-    <button class="btn mb-3" routerLink="/cosas-feas">
-      <span> Cosas Feas </span>
-    </button>
-  </div>
+  <ion-button
+    routerLink="/cosas-feas"
+    expand="block"
+    color="danger"
+    class="btn-home"
+  >
+    Cosas Feas
+  </ion-button>
+  <!-- <button class="btn mb-3" routerLink="/cosas-lindas">
+    <span> Cosas Lindas </span>
+  </button>
+
+  <button class="btn mb-3" routerLink="/cosas-feas">
+    <span> Cosas Feas </span>
+  </button> -->
 </div>

@@ -59,11 +59,7 @@ export class LoginPage implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    if (this.userService.correo !== null) {
-      this.router.navigateByUrl('/home');
-    }
-  }
+  ngOnInit(): void {}
 
   acceder() {
     if (this.fg.valid) {
