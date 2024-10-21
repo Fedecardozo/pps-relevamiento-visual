@@ -49,7 +49,7 @@ export class MisImagenesFeasPage {
 
   ngOnInit() {
     //imagenes a mostrar
-    this.util.mostrarSpinner('Cargando imagenes...');
+    this.util.mostrarSpinner('Cargando imágenes...');
     this.obtenerImagenes();
   }
 

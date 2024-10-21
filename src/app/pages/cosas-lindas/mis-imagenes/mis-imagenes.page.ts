@@ -53,7 +53,7 @@ export class MisImagenesPage implements OnInit {
 
   ngOnInit() {
     //imagenes a mostrar
-    this.util.mostrarSpinner('Cargando imagenes...');
+    this.util.mostrarSpinner('Cargando imágenes...');
     this.obtenerImagenes();
     console.log(this.imagenes);
   }
