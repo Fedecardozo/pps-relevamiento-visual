@@ -40,7 +40,7 @@ export class BarraPage implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.util.mostrarSpinner('Cargando grafico...');
+    this.util.mostrarSpinner('Cargando gráfico...');
     this.getDatos();
   }
 
